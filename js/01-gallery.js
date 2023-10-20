@@ -1,17 +1,13 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-console.log(galleryItems);
-
-
 const list = document.querySelector(".gallery");
 
 list.insertAdjacentHTML("afterbegin", createMarkup(galleryItems));
 list.addEventListener("click", handlerClick);
 
-list.classList.contains
-
 function handlerClick(evt) {
+    evt.preventDefault()
     if (!evt.target.classList.contains("gallery__image")) {
         return;
     }
@@ -31,7 +27,8 @@ function createModal(url) {
 
     document.addEventListener("keydown", handlerClose)
     function handlerClose(event) {
-    console.log(event.code);
+        event.preventDefault();
+
         if (event.code === "Escape") {
             instance.close();
         }
@@ -43,7 +40,7 @@ function createMarkup(arr) {
     return arr
         .map(({ preview, original, description }) => `
         <li class="gallery__item">
-        <a href="#" class="gallery__link" href="large-image.jpg">
+        <a class="gallery__link" href="large-image.jpg">
         <img
             class="gallery__image"
             src=${preview}
